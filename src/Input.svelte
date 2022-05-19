@@ -1,17 +1,21 @@
 <script>
-  let value = "";
   let response = [];
+  let timer;
+  let val = "";
 
-  const handleInput = (e) => (value = e.target.value);
-
-  $: if (value.length > 2) {
-    response = fetch(`https://www.omdbapi.com/?s=${value}&apikey=422350ff`)
-      .then((response) => response.json())
-      .then((data) => data.Search || []);
-  }
+  const debounce = (v) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      val = v;
+      response = fetch(`https://www.omdbapi.com/?s=${v}&apikey=422350ff`)
+        .then((response) => response.json())
+        .then((data) => data.Search || []);
+    }, 750);
+  };
 </script>
 
-<input {value} on:input={handleInput} />
+<input on:keyup={({ target: { value } }) => debounce(value)} />
+{#if val !== ""}<h1>Looking for {val}:</h1>{/if}
 {#await response}
   <strong>Loading...</strong>
 {:then movies}
@@ -24,8 +28,9 @@
     </article>
   {:else}
     <strong>{response.length} results found</strong>
-    <strong>No results found</strong>
   {/each}
 {:catch}
   <strong>There has been an error</strong>
 {/await}
+
+<!-- new owner api key 46739e1a -->
