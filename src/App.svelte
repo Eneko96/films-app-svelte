@@ -1,9 +1,14 @@
 <script>
 	import Input from "./Input.svelte";
+	import Header from "./modules/Header.svelte";
+	import FilmListing from "./components/FilmListing.svelte";
+	let response = [];
 </script>
 
 <main>
-	<Input />
+	<Header />
+	<Input name="Films" on:response={({ detail }) => (response = detail)} />
+	<FilmListing listing={response} />
 </main>
 
 <style>
