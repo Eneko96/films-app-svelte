@@ -12,7 +12,7 @@
       val = v;
       response = fetch(`https://www.omdbapi.com/?s=${v}&apikey=46739e1a`)
         .then((response) => response.json())
-        .then((data) => dispatch("response", data.Search));
+        .then((data) => dispatch("response", data));
     }, 750);
   };
 </script>
@@ -21,5 +21,3 @@
   placeholder={`Search for ${name}`}
   on:keyup={({ target: { value } }) => onDebounce(value)}
 />
-
-<!-- new owner api key 46739e1a -->
