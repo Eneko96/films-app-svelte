@@ -39,10 +39,16 @@
 
 <style>
 	:global(body) {
-		background-color: black;
+		background: linear-gradient(#8b8787, #2a2a2a);
+		height: 100vh;
+		overflow-y: hidden;
 		color: white;
 	}
 	main {
+		padding: 1rem;
+		height: 100%;
+		overflow-y: scroll;
+		background-color: transparent;
 		text-align: center;
 		padding: 1em;
 		max-width: 240px;

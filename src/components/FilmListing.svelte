@@ -40,7 +40,7 @@
 
   img {
     width: 100%;
-    height: 75%;
+    height: 65%;
     object-fit: contain;
     transition: transform 200ms ease-in-out;
   }
