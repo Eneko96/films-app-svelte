@@ -29,7 +29,9 @@
 
 <style>
   .input-icons i {
-    position: absolute;
+    position: relative;
+    top: 38px;
+    right: 47vw;
   }
 
   .input-icons {
