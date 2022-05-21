@@ -12,7 +12,7 @@
       val = v;
       response = fetch(`https://www.omdbapi.com/?s=${v}&apikey=46739e1a`)
         .then((response) => response.json())
-        .then((data) => dispatch("response", data));
+        .then((data) => dispatch("response", { data, v }));
     }, 750);
   };
 </script>

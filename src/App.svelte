@@ -1,25 +1,40 @@
 <script>
 	import Input from "./Input.svelte";
-	import Header from "./modules/Header.svelte";
 	import FilmListing from "./components/FilmListing.svelte";
 	import Paginator from "./components/Paginator.svelte";
 	import { omdPaginationCalculator } from "./utils/dummys";
 	let page = 1;
 	let pages = null;
+	let input = "";
 	let response = [];
 
 	const handleResponse = ({ detail }) => {
-		console.log(detail);
-		// response = detail.Search;
-		// pages = omdPaginationCalculator(detail.totalResults);
+		response = detail.data.Search;
+		input = detail.v;
+		pages = omdPaginationCalculator(detail.data.totalResults);
 	};
+
+	const setPage = async (e) => {
+		if (e === "increment") ++page;
+		else --page;
+
+		await fetch(
+			`https://www.omdbapi.com/?s=${input}&apikey=46739e1a&page=${page}`
+		)
+			.then((response) => response.json())
+			.then((data) => (response = data.Search));
+	};
+
+	$: if (pages) {
+		console.log(pages);
+	}
 </script>
 
 <main>
 	<!-- <Header /> -->
 	<Input name="Films" on:response={handleResponse} />
 	<FilmListing listing={response} />
-	<Paginator {page} />
+	{#if pages}<Paginator {page} {pages} {setPage} />{/if}
 </main>
 
 <style>

@@ -1,5 +1,11 @@
 <script>
+  import { UNAVAILABLE_IMAGE } from "../utils/contants";
+
   export let listing;
+
+  const handleErrorImage = (e) => {
+    e.target.src = UNAVAILABLE_IMAGE;
+  };
 </script>
 
 <main>
@@ -8,7 +14,7 @@
       <article>
         <small>#{index}</small>
         <div class="separator" />
-        <img alt={Title} src={Poster} />
+        <img alt={Title} src={Poster} on:error={handleErrorImage} />
         <h3>{Title}</h3>
         <span>{Year}</span>
       </article>

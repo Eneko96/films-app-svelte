@@ -1,34 +1,28 @@
 <script>
+  import Left from "../assets/left.svelte";
+  import Right from "../assets/right.svelte";
   export let page;
-  import { createEventDispatcher } from "svelte";
-  const dispatch = createEventDispatcher();
+  export let pages;
+  export let setPage;
 
   const handlePage = (e) => {
-    console.log(e);
+    setPage(e);
   };
 </script>
 
 <div>
-  <p on:click={handlePage} value="-1">{"<"}</p>
-  <small>{page}</small>
-  <p on:click={handlePage} value={1}>{">"}</p>
+  <small>Page {page} of {pages}</small>
+  <div on:click={() => handlePage("decrement")}><Left width="1rem" /></div>
+  <div on:click={() => handlePage("increment")}><Right width="1rem" /></div>
 </div>
 
 <style>
   div {
+    user-select: none;
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 1rem;
     height: 4rem;
-    width: 100%;
-  }
-  p {
-    margin: 0 1em;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-  }
-
-  p:hover {
-    transform: scale(1.1);
+    justify-content: center;
   }
 </style>
