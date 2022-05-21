@@ -18,22 +18,42 @@
   };
 </script>
 
-<section>
-  <i><Search height="2rem" width="2rem" /></i>
+<section class="input-icons">
+  <i class="icon"><Search height="2rem" width="2rem" /></i>
   <input
+    class="input-field"
     placeholder={`Search for ${name}`}
     on:keyup={({ target: { value } }) => onDebounce(value)}
   />
 </section>
 
 <style>
-  i {
-    margin-bottom: 0.4rem;
+  .input-icons i {
+    position: absolute;
   }
-  section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+
+  .input-icons {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .icon {
+    padding: 4px;
+    color: #8b8787;
+    min-width: 50px;
+    text-align: center;
+  }
+
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+  }
+  input:focus {
+    border-color: none;
+    outline: 2px solid #474747;
+  }
+  input {
+    transition: outline 0.1s ease-out;
   }
 </style>

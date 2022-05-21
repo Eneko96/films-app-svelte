@@ -20,7 +20,7 @@
       </article>
     {/each}
   {:else}
-    <h1>No results found</h1>
+    <h1 style="padding-top: 10rem;">No results found</h1>
   {/if}
 </main>
 

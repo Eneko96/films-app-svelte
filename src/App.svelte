@@ -32,6 +32,7 @@
 
 <main>
 	<!-- <Header /> -->
+	<h1>Film Seeker</h1>
 	<Input name="Films" on:response={handleResponse} />
 	<FilmListing listing={response} />
 	{#if pages}<Paginator {page} {pages} {setPage} />{/if}
@@ -39,19 +40,20 @@
 
 <style>
 	:global(body) {
-		background: linear-gradient(#8b8787, #2a2a2a);
-		height: 100vh;
 		overflow-y: hidden;
 		color: white;
+		padding: 0;
+		scroll-behavior: smooth;
 	}
 	main {
+		background: linear-gradient(#8b8787, #2a2a2a);
+		height: 100vh;
 		padding: 1rem;
 		height: 100%;
 		overflow-y: scroll;
 		background-color: transparent;
 		text-align: center;
 		padding: 1em;
-		max-width: 240px;
 		margin: 0 auto;
 	}
 
