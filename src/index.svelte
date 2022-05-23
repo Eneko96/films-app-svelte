@@ -7,13 +7,12 @@
 
 <Router {url}>
   <Route path="/"><App /></Route>
-  <Route path="Film/:id" component={Film} />
 </Router>
 
 <style>
   :global(body) {
     overflow-y: hidden;
-    color: white;
+    /* color: white; */
     padding: 0;
     scroll-behavior: smooth;
   }

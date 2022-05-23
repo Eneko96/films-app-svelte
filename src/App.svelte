@@ -8,8 +8,6 @@
 	let input = "";
 	let response = [];
 
-	console.log("on App");
-
 	const handleResponse = ({ detail }) => {
 		response = detail.data.Search;
 		input = detail.v;
@@ -51,7 +49,6 @@
 		top: 0;
 	}
 	main {
-		background-color: #2a2a2a;
 		height: 100vh;
 		height: 100%;
 		overflow-y: scroll;

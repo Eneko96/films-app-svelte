@@ -2,8 +2,8 @@
   import Star from "../assets/Star.svelte";
   import { quintOut } from "svelte/easing";
   import { scale } from "svelte/transition";
-  import { Link } from "svelte-routing";
-  let { id } = history.state;
+  export let id;
+  console.log(id);
   let response = {};
 
   const fetchMovie = async () => {
@@ -24,13 +24,13 @@
     return stars;
   };
 
-  $: {
+  $: if (id) {
     fetchMovie();
   }
 </script>
 
 {#await response then res}
-  <main transition:scale={{ delay: 250, duration: 500, easing: quintOut }}>
+  <main>
     <section>
       <img src={res.Poster} alt={`${res.Title} film`} />
     </section>
@@ -39,7 +39,7 @@
       <h2>{res.Year}</h2>
       <h3>Director: {res.Director}</h3>
       <h3>Actors: {res.Actors}</h3>
-      <h3>Plot: {res.Plot}</h3>
+      <!-- <h3>Plot: {res.Plot}</h3> -->
       <h3>
         {#if res.imdbRating}
           {#each starring(res.imdbRating) as star, i}
@@ -50,21 +50,10 @@
       </h3>
       <h4>Type: {res.Type}</h4>
     </div>
-    <aside>
-      <Link to="/">Home</Link>
-    </aside>
   </main>
 {/await}
 
 <style>
-  :global(body) {
-    overflow-y: hidden;
-    color: white;
-    padding: 0;
-    scroll-behavior: smooth;
-    background: linear-gradient(#8b8787, #2a2a2a);
-  }
-
   main {
     display: flex;
     flex-direction: row;
@@ -73,7 +62,7 @@
   }
 
   section {
-    height: 50rem;
+    height: 20rem;
   }
 
   img {
@@ -83,5 +72,6 @@
 
   .movie-description {
     align-self: flex-end;
+    text-align: justify;
   }
 </style>
