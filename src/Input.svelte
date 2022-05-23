@@ -48,6 +48,7 @@
     text-align: left;
     padding-left: 3rem;
     color: white;
+    border: transparent;
   }
   input:focus {
     border-color: none;

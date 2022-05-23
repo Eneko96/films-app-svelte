@@ -1,7 +1,7 @@
 <script>
   import Star from "../assets/Star.svelte";
-  import { cubicIn } from "svelte/easing";
-  import fadeScale from "../utils/transition-fade-scale";
+  import { quintOut } from "svelte/easing";
+  import { scale } from "svelte/transition";
   import { Link } from "svelte-routing";
   let { id } = history.state;
   let response = {};
@@ -30,14 +30,7 @@
 </script>
 
 {#await response then res}
-  <main
-    in:fadeScale={{
-      delay: 0,
-      duration: 800,
-      easing: cubicIn,
-      baseScale: 0.7,
-    }}
-  >
+  <main transition:scale={{ delay: 250, duration: 500, easing: quintOut }}>
     <section>
       <img src={res.Poster} alt={`${res.Title} film`} />
     </section>
