@@ -1,5 +1,8 @@
 <script>
   import Star from "../assets/Star.svelte";
+  import { cubicIn } from "svelte/easing";
+  import fadeScale from "../utils/transition-fade-scale";
+  import { Link } from "svelte-routing";
   let { id } = history.state;
   let response = {};
 
@@ -10,6 +13,7 @@
 
   const starring = (rating) => {
     const transRating = Number(rating).toFixed(0);
+    const stars = Array(transRating).fill("0%");
     for (let i = 0; i < transRating; i++) {
       if (i === transRating - 1) {
         const decimal = (+rating % 1).toFixed(1) * 100;
@@ -26,7 +30,14 @@
 </script>
 
 {#await response then res}
-  <main>
+  <main
+    in:fadeScale={{
+      delay: 0,
+      duration: 800,
+      easing: cubicIn,
+      baseScale: 0.7,
+    }}
+  >
     <section>
       <img src={res.Poster} alt={`${res.Title} film`} />
     </section>
@@ -46,6 +57,9 @@
       </h3>
       <h4>Type: {res.Type}</h4>
     </div>
+    <aside>
+      <Link to="/">Home</Link>
+    </aside>
   </main>
 {/await}
 

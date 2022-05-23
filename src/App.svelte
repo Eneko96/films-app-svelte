@@ -8,6 +8,8 @@
 	let input = "";
 	let response = [];
 
+	console.log("on App");
+
 	const handleResponse = ({ detail }) => {
 		response = detail.data.Search;
 		input = detail.v;
@@ -32,7 +34,7 @@
 
 <main>
 	<div class="header">
-		Film Searcher<Input name="Films" on:response={handleResponse} />
+		<Input name="Films" on:response={handleResponse} />
 	</div>
 	<FilmListing listing={response} />
 	{#if pages}<Paginator {page} {pages} {setPage} />{/if}
@@ -45,16 +47,14 @@
 		align-items: center;
 		padding: 0.5rem 0;
 		z-index: 1;
-		background-color: #2a2a2a;
 		position: sticky;
 		top: 0;
 	}
 	main {
-		background: linear-gradient(#8b8787, #2a2a2a);
+		background-color: #2a2a2a;
 		height: 100vh;
 		height: 100%;
 		overflow-y: scroll;
-		background-color: transparent;
 		text-align: center;
 		margin: 0 auto;
 	}

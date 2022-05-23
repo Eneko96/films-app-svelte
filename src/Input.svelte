@@ -31,7 +31,7 @@
   .input-icons i {
     position: relative;
     color: white;
-    top: 0.7rem;
+    top: 0.6rem;
     right: -3rem;
   }
 
@@ -45,7 +45,9 @@
   .input-field {
     width: 20rem;
     padding: 10px;
-    text-align: center;
+    text-align: left;
+    padding-left: 3rem;
+    color: white;
   }
   input:focus {
     border-color: none;
@@ -54,5 +56,8 @@
   input {
     margin: 0.2rem;
     transition: outline 0.1s ease-out;
+    caret-color: white;
+    background-color: transparent;
   }
+  /* input text focus left */
 </style>

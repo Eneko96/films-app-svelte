@@ -1,6 +1,7 @@
 <script>
   import { UNAVAILABLE_IMAGE } from "../utils/contants";
   import { navigate } from "svelte-routing";
+  import { fade, fly } from "svelte/transition";
 
   export let listing;
 
@@ -17,7 +18,7 @@
 <main>
   {#if listing.length > 0}
     {#each listing as { Title, Poster, Year, imdbID }, index}
-      <article>
+      <article in:fly={{ y: 50, duration: 1000 }} out:fade>
         <small>#{index}</small>
         <div class="separator" />
         <img
@@ -31,7 +32,10 @@
       </article>
     {/each}
   {:else}
-    <h1 style="padding-top: 10rem;">No results found</h1>
+    <div in:fade>
+      <h1 style="padding-top: 10rem;">No results found...</h1>
+      <h1>😔</h1>
+    </div>
   {/if}
 </main>
 
