@@ -8,12 +8,13 @@
     response = await res.json();
   };
 
-  const starring = (rating = 0) => {
-    console.log(rating, typeof rating);
+  const starring = (rating) => {
     const transRating = Number(rating).toFixed(0);
-    let stars = Array(10).fill(false);
     for (let i = 0; i < transRating; i++) {
-      stars[i] = true;
+      if (i === transRating - 1) {
+        const decimal = (+rating % 1).toFixed(1) * 100;
+        stars[i] = decimal.toString() + "%";
+      } else stars[i] = "100%";
     }
     console.log(stars.length, stars);
     return stars;
@@ -36,13 +37,11 @@
       <h3>Actors: {res.Actors}</h3>
       <h3>Plot: {res.Plot}</h3>
       <h3>
-        {#each starring(res.imdbRating) as star}
-          {#if star === true}
-            <Star fill="white" />
-          {:else}
-            <Star />
-          {/if}
-        {/each}
+        {#if res.imdbRating}
+          {#each starring(res.imdbRating) as star, i}
+            <Star id={i} fill="white" offset={star} />
+          {/each}
+        {/if}
         ({res.imdbRating})
       </h3>
       <h4>Type: {res.Type}</h4>
