@@ -1,20 +1,31 @@
 <script>
   import { UNAVAILABLE_IMAGE } from "../utils/contants";
+  import { navigate } from "svelte-routing";
 
   export let listing;
 
   const handleErrorImage = (e) => {
     e.target.src = UNAVAILABLE_IMAGE;
   };
+
+  const handleClick = (id) => {
+    console.log(id);
+    navigate(`/Film/${id}`);
+  };
 </script>
 
 <main>
   {#if listing.length > 0}
-    {#each listing as { Title, Poster, Year }, index}
+    {#each listing as { Title, Poster, Year, imdbID }, index}
       <article>
         <small>#{index}</small>
         <div class="separator" />
-        <img alt={Title} src={Poster} on:error={handleErrorImage} />
+        <img
+          alt={Title}
+          src={Poster}
+          on:error={handleErrorImage}
+          on:click={() => handleClick(imdbID)}
+        />
         <h3>{Title}</h3>
         <span>{Year}</span>
       </article>

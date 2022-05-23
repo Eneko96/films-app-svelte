@@ -10,24 +10,8 @@
   };
 
   const goTop = () => {
-    document.body.scrollIntoView();
+    document.body.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  function scrollContainer() {
-    return document.documentElement || document.body;
-  }
-
-  function handleOnScroll() {
-    if (!scrollContainer()) {
-      return;
-    }
-
-    if (scrollContainer().scrollTop > showOnPx) {
-      hidden = false;
-    } else {
-      hidden = true;
-    }
-  }
 </script>
 
 <div>
@@ -36,7 +20,6 @@
   <div on:click={() => handlePage("increment")}><Right width="1rem" /></div>
   <span on:click={goTop}>Return to top</span>
 </div>
-<svelte:window on:scroll={handleOnScroll} />
 
 <style>
   div {
