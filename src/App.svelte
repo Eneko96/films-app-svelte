@@ -31,9 +31,9 @@
 </script>
 
 <main>
-	<!-- <Header /> -->
-	<h1>Film Seeker</h1>
-	<Input name="Films" on:response={handleResponse} />
+	<div class="header">
+		Film Searcher<Input name="Films" on:response={handleResponse} />
+	</div>
 	<FilmListing listing={response} />
 	{#if pages}<Paginator {page} {pages} {setPage} />{/if}
 </main>
@@ -45,15 +45,24 @@
 		padding: 0;
 		scroll-behavior: smooth;
 	}
+
+	.header {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 0.5rem 0;
+		z-index: 1;
+		background-color: #2a2a2a;
+		position: sticky;
+		top: 0;
+	}
 	main {
 		background: linear-gradient(#8b8787, #2a2a2a);
 		height: 100vh;
-		padding: 1rem;
 		height: 100%;
 		overflow-y: scroll;
 		background-color: transparent;
 		text-align: center;
-		padding: 1em;
 		margin: 0 auto;
 	}
 

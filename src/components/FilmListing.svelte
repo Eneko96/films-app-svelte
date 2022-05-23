@@ -27,7 +27,7 @@
 <style>
   main {
     text-align: center;
-    padding: 1em;
+    padding: 1rem;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));

@@ -30,13 +30,9 @@
 <style>
   .input-icons i {
     position: relative;
-    top: 38px;
-    right: 47vw;
-  }
-
-  .input-icons {
-    width: 100%;
-    margin-bottom: 10px;
+    color: white;
+    top: 0.7rem;
+    right: -3rem;
   }
 
   .icon {
@@ -47,7 +43,7 @@
   }
 
   .input-field {
-    width: 100%;
+    width: 20rem;
     padding: 10px;
     text-align: center;
   }
@@ -56,6 +52,7 @@
     outline: 2px solid #474747;
   }
   input {
+    margin: 0.2rem;
     transition: outline 0.1s ease-out;
   }
 </style>
