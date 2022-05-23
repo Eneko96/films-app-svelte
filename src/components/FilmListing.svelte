@@ -10,7 +10,7 @@
 
   const handleClick = (id) => {
     console.log(id);
-    navigate(`/Film/${id}`);
+    navigate(`/Film/${id}`, { state: { id } });
   };
 </script>
 

@@ -39,13 +39,6 @@
 </main>
 
 <style>
-	:global(body) {
-		overflow-y: hidden;
-		color: white;
-		padding: 0;
-		scroll-behavior: smooth;
-	}
-
 	.header {
 		display: flex;
 		justify-content: center;
