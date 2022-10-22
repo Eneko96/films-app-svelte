@@ -1,11 +1,14 @@
 <script>
+  import { fade } from "svelte/transition";
+
   export let title;
   export let year;
   export let poster;
+  export let num;
   //   export let imdbID;
 </script>
 
-<div class="film-extended">
+<div transition:fade={{ delay: num * 100 }} class="film-extended">
   <img src={poster} alt="poster" />
   <div class="text-content">
     <p>{title}</p>

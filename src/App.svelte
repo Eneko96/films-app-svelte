@@ -21,8 +21,6 @@
       films = await data({ name: e.target.value });
     }, 1000);
   };
-
-  $: console.log(films);
 </script>
 
 <main>
@@ -31,8 +29,13 @@
     <input type="text" placeholder="Search" on:input={onChange} />
   </div>
   {#if films.length > 0}
-    {#each films as film}
-      <FilmExtended title={film.Title} year={film.Year} poster={film.Poster} />
+    {#each films as film, i}
+      <FilmExtended
+        num={i}
+        title={film.Title}
+        year={film.Year}
+        poster={film.Poster}
+      />
     {/each}
   {:else}
     <Title title="Every day Films" />
@@ -104,6 +107,7 @@
   input[type="text"]::-webkit-input-placeholder,
   input[type="text"]::-moz-placeholder {
     color: rgba(255, 255, 255, 0.605);
+    font-weight: 500;
   }
 
   .films-container {
