@@ -1,9 +1,15 @@
 <script>
+  import { fade } from "svelte/transition";
   export let title;
   export let poster;
+  export let delay;
 </script>
 
-<div style={`background-image: url(${poster});`} {title} />
+<div
+  in:fade={{ delay: delay * 100 }}
+  style={`background-image: url(${poster});`}
+  {title}
+/>
 
 <style>
   div {

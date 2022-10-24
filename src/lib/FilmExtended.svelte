@@ -28,7 +28,7 @@
     margin-top: 10px;
   }
   .film-extended:first-child {
-    margin-top: 20px;
+    margin-top: 4rem;
   }
 
   .film-extended:last-child {

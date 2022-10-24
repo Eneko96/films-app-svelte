@@ -4,6 +4,7 @@
   import Title from "./lib/Title.svelte";
   let timeout;
   let films = [];
+  let search = "";
 
   const data = async ({ name }) => {
     const res = await fetch(
@@ -21,36 +22,67 @@
       films = await data({ name: e.target.value });
     }, 1000);
   };
+
+  const onBack = () => {
+    films = [];
+    search = "";
+  };
 </script>
 
 <main>
+  {#if films.length}
+    <div class="back" on:click={onBack} on:keydown={onBack}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="30"
+        height="30"
+        fill="currentColor"
+        class="bi bi-backspace"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z"
+        />
+        <path
+          d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1h7.08zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1h-7.08z"
+        />
+      </svg>
+    </div>
+  {/if}
   <h1>What would you like to watch?</h1>
   <div class="input-container">
-    <input type="text" placeholder="Search" on:input={onChange} />
+    <input
+      bind:value={search}
+      type="text"
+      placeholder="Search"
+      on:input={onChange}
+    />
   </div>
   {#if films.length > 0}
-    {#each films as film, i}
-      <FilmExtended
-        num={i}
-        title={film.Title}
-        year={film.Year}
-        poster={film.Poster}
-      />
-    {/each}
+    <div>
+      {#each films as film, i}
+        <FilmExtended
+          num={i}
+          title={film.Title}
+          year={film.Year}
+          poster={film.Poster}
+        />
+      {/each}
+    </div>
   {:else}
     <Title title="Every day Films" />
     <div class="films-container">
       {#await data({ name: "harry potter" }) then results}
-        {#each results as film}
-          <Film title={film.Title} poster={film.Poster} />
+        {#each results as film, delay}
+          <Film {delay} title={film.Title} poster={film.Poster} />
         {/each}
       {/await}
     </div>
     <Title title="ESDLA Films" />
     <div class="films-container">
       {#await data({ name: "Lord of the rings" }) then results}
-        {#each results as film}
-          <Film title={film.Title} poster={film.Poster} />
+        {#each results as film, delay}
+          <Film {delay} title={film.Title} poster={film.Poster} />
         {/each}
       {/await}
     </div>
@@ -74,6 +106,20 @@
     border-radius: 8px;
     position: relative;
     transition: background 1s;
+  }
+
+  .back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+  }
+
+  .back > svg:hover {
+    fill: black;
+    transition: fill 0.2s ease-in-out;
   }
   h1 {
     margin: 55px 65px 0 65px;
